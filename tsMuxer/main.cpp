@@ -408,7 +408,7 @@ Additional parameters for video tracks:
 Additional parameters for H.264 video tracks:
 - level             Overwrite the level in the H264 stream. Do note that this
                     option only updates the headers and does not reencode the
-                    stream, which may not meet the requirements for a lower 
+                    stream, which may not meet the requirements for a lower
                     level.
 - insertSEI         If the original stream does not contain SEI picture timing,
                     SEI buffering period or VUI parameters, add this data to
@@ -424,13 +424,13 @@ Additional parameters for H.264 video tracks:
                     2 sets it to the MVC part.
 - secondary         Mux as secondary video (PIP).
 - pipCorner         Corner for PIP video. Allowed values: "TopLeft","TopRight",
-                    "BottomRight", "BottomLeft". 
+                    "BottomRight", "BottomLeft".
 - pipHOffset        PIP window horizontal offset from the corner in pixels.
 - pipVOffset        PIP window vertical offset from the corner in pixels.
 - pipScale          PIP window scale factor. Allowed values: "1", "1/2", "1/4",
                     "1.5", "fullScreen".
 - pipLumma          Allow the PIP window to be transparent. Transparent colors
-                    are lumma colors in range [0..pipLumma]. 
+                    are lumma colors in range [0..pipLumma].
 
 Additional parameters for PG and SRT tracks:
 
@@ -643,7 +643,7 @@ int main(int argc, char** argv)
                     if (mode3D)
                         itemName = streamDir + string("SSIF") + getDirSeparator() + item.fileName + ".ssif";
                     else
-                        itemName = streamDir.append(item.fileName).append(mediaExt);  // 2d mode
+                        itemName = streamDir + item.fileName + mediaExt;  // 2d mode
 
                     LTRACE(LT_INFO, 2, "");
                     LTRACE(LT_INFO, 2, "File #" << strPadLeft(int64ToStr(i), 5, '0') << " name=" << itemName);
@@ -670,7 +670,7 @@ int main(int argc, char** argv)
                         PlayListMark& curMark = mplsParser.m_marks[markIndex];
                         if (static_cast<unsigned>(curMark.m_playItemID) > i)
                             break;
-                        uint64_t time = curMark.m_markTime - mplsParser.m_playItems[i].IN_time + prevFileOffset;
+                        uint64_t time = curMark.m_markTime - mplsParser.m_playItems[i].IN_time;
                         if (marksPerFile % 5 == 0)
                         {
                             if (marksPerFile > 0)
